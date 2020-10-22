@@ -47,12 +47,9 @@ export alias pbpaste='xclip -selection clipboard -o'
 source ~/.zshrc
 
 echo 'Instalando .NET Core'
-wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-sudo apt-get update; \
-  sudo apt-get install -y apt-transport-https && \
-  sudo apt-get update && \
-  sudo apt-get install -y dotnet-sdk-3.1
+wget https://dot.net/v1/dotnet-install.sh
+./dotnet-install.sh --install-dir /opt/dotnet -Channel Current -Version latest
+ln -s /opt/dotnet/dotnet /usr/local/bin/
 
 echo 'Instalando Mono'
 sudo apt install gnupg ca-certificates
@@ -123,6 +120,9 @@ sudo apt-get install -f
 
 echo 'Instalando Insomnia'
 sudo snap install insomnia
+
+echo 'Instalando Flameshot'
+sudo snap install flameshot
 
 echo 'Instalando Microsoft Teams'
 curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
